@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DetailImageView.swift
 //  NASA PIC OF DAY
 //
 //  Created by Dmitry Novosyolov on 06/08/2019.
@@ -8,16 +8,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DetailImageView: View {
+    var photo: Photo
     var body: some View {
-        Text("Hello World")
+        DetailImage(photo: photo)
     }
 }
 
 #if DEBUG
-struct ContentView_Previews: PreviewProvider {
+struct DetailImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        DetailImageView(photo: Photo.all())
     }
 }
 #endif
