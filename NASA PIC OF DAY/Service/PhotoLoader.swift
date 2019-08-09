@@ -21,7 +21,7 @@ final class NetService: ObservableObject {
         guard baseURL.withQueries(query) != nil else { fatalError("URL isn't correct!")}
         
         formater.dateFormat = "yyyy-MM-dd"
-        query["api_key"] = "DPmp3JLMD3lwQsICYQ7fWajSW1aK1AsxcObMDYJr"
+        query["api_key"] = "your key )))"
         
         (0..<10/*11*/).forEach { day in
             query["date"] = formater
