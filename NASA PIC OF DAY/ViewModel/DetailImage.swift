@@ -10,6 +10,17 @@ import SwiftUI
 
 struct DetailImage: View {
     var photo: Photo
+    var body: some View {
+        VStack {
+            DetailHeader(photo: photo)
+            DetailExplanation(photo: photo)
+            DetailFooter(photo: photo)
+        }.padding(5)
+    }
+}
+
+struct DetailHeader: View {
+    var photo: Photo
     @State private var tapped = false
     var body: some View {
         VStack {
@@ -20,15 +31,12 @@ struct DetailImage: View {
             URLImage(url: photo.url)
                 .cornerRadius(tapped ? 50 : 8)
                 .shadow(color: .secondary, radius: 5)
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) { self.tapped.toggle()}}
                 .frame(height: tapped ? 100 : nil)
-                .scaleEffect(tapped ? 0.22 : 1.0)
-            
-            DetailExplanation(photo: photo)
-            DetailFooter(photo: photo)
-        }.padding(5)
+                .scaleEffect(tapped ? 0.45 : 1.0)
+        }
     }
 }
 
@@ -36,8 +44,8 @@ struct DetailExplanation: View {
     var photo: Photo
     var body: some View {
         List { Text(photo.explanation)}
-        .lineLimit(nil)
-        .foregroundColor(.secondary)
+            .lineLimit(nil)
+            .foregroundColor(.secondary)
     }
 }
 
@@ -47,8 +55,8 @@ struct DetailFooter: View {
     var body: some View {
         VStack {
             Image(systemName: isSelected ? "star.fill" : "star")
-            .resizable()
-            .frame(width: 35, height: 35)
+                .resizable()
+                .frame(width: 35, height: 35)
                 .foregroundColor(.yellow)
                 .shadow(color: isSelected ? .primary : .secondary, radius: 3)
                 .onTapGesture { withAnimation(.easeInOut) { self.isSelected.toggle()}}

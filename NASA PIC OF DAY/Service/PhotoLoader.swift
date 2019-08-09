@@ -21,9 +21,9 @@ final class NetService: ObservableObject {
         guard baseURL.withQueries(query) != nil else { fatalError("URL isn't correct!")}
         
         formater.dateFormat = "yyyy-MM-dd"
-        query["api_key"] = "your key ))"
+        query["api_key"] = "DPmp3JLMD3lwQsICYQ7fWajSW1aK1AsxcObMDYJr"
         
-        (0..<11).forEach { day in
+        (0..<10/*11*/).forEach { day in
             query["date"] = formater
                 .string(from: calendar
                     .date(from: DateComponents(calendar: calendar,
@@ -33,7 +33,7 @@ final class NetService: ObservableObject {
             print(day, baseURL.withQueries(query)!)
             
             //MARK: - this API isn't realy responsibility...))
-            guard query["date"] != formater.string(from: Date()) else { return }
+            /*guard query["date"] != formater.string(from: Date()) else { return }*/
             
             URLSession.shared.dataTask(with: baseURL.withQueries(query)!) { data,_,_ in
                 guard let data = data, var photoInfo = try? JSONDecoder().decode(Photo.self, from: data) else { fatalError("Can't decode data!")}

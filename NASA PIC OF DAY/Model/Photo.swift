@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Photo: Codable, Hashable, Identifiable {
+struct Photo: Codable, Identifiable {
     
     var id: UUID?
     var copyright: String?
